@@ -1,0 +1,36 @@
+function selectionSort(arr) {
+    const n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (i !== minIndex) {
+            const temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
+
+function main() {
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.question('Enter the number of elements: ', (n) => {
+        n = parseInt(n);
+        rl.question('Enter the elements separated by space: ', (input) => {
+            const v = input.split(' ').map(Number);
+            selectionSort(v);
+            console.log('Sorted array:', v.join(' '));
+            rl.close();
+        });
+    });
+}
+
+main();
